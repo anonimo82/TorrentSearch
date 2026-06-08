@@ -1,0 +1,55 @@
+{
+  "manifest_version": 2,
+  "name": "Torrent Search",
+  "version": "1.0.0",
+  "description": "Search torrents via Jackett or Prowlarr with overlay results",
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "activeTab",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "overlay.css"
+      ]
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "icons": {
+    "48": "icons/icon48.png",
+    "96": "icons/icon96.png"
+  },
+  "browser_action": {
+    "default_icon": {
+      "48": "icons/icon48.png"
+    },
+    "default_title": "Torrent Search"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      },
+      "id": "{2ad008e2-59f9-4023-82e2-25381d029896}"
+    }
+  }
+}

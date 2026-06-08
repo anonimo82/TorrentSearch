@@ -1,0 +1,302 @@
+#jacket-overlay-root {
+  --ts-bg:        #1a1d23;
+  --ts-bg-sub:    #13151a;
+  --ts-bg-th:     #1e2128;
+  --ts-bg-th-hov: #252933;
+  --ts-bg-tr-hov: #21242c;
+  --ts-border:    #2e3340;
+  --ts-border-row:#23262e;
+  --ts-text:      #d0d4de;
+  --ts-text-td:   #c9cdd8;
+  --ts-text-title:#e2e5ee;
+  --ts-text-mute: #6b7280;
+  --ts-text-dim:  #4b5563;
+  --ts-accent:    #818cf8;
+  --ts-accent-hov:#a5b4fc;
+  --ts-scroll-tr: #13151a;
+  --ts-scroll-th: #2e3340;
+  --ts-scroll-hov:#3f4658;
+  --ts-spinner-bg:#2e3340;
+  --ts-shadow:    rgba(0,0,0,0.7);
+  --ts-backdrop:  rgba(0,0,0,0.55);
+}
+
+@media (prefers-color-scheme: light) {
+  #jacket-overlay-root {
+    --ts-bg:        #ffffff;
+    --ts-bg-sub:    #f3f4f6;
+    --ts-bg-th:     #f9fafb;
+    --ts-bg-th-hov: #eff0f2;
+    --ts-bg-tr-hov: #f5f6f8;
+    --ts-border:    #d1d5db;
+    --ts-border-row:#e5e7eb;
+    --ts-text:      #111827;
+    --ts-text-td:   #374151;
+    --ts-text-title:#111827;
+    --ts-text-mute: #6b7280;
+    --ts-text-dim:  #9ca3af;
+    --ts-accent:    #4f46e5;
+    --ts-accent-hov:#4338ca;
+    --ts-scroll-tr: #f3f4f6;
+    --ts-scroll-th: #d1d5db;
+    --ts-scroll-hov:#9ca3af;
+    --ts-spinner-bg:#e5e7eb;
+    --ts-shadow:    rgba(0,0,0,0.18);
+    --ts-backdrop:  rgba(0,0,0,0.3);
+  }
+}
+
+#jacket-overlay-root * {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.jacket-backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--ts-backdrop);
+  z-index: 2147483640;
+  backdrop-filter: blur(2px);
+}
+
+.jacket-panel {
+  position: fixed;
+  top: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(92vw, 1100px);
+  max-height: 88vh;
+  background: var(--ts-bg);
+  border: 1px solid var(--ts-border);
+  border-radius: 10px;
+  box-shadow: 0 24px 80px var(--ts-shadow);
+  z-index: 2147483641;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--ts-text);
+}
+
+.jacket-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: var(--ts-bg-sub);
+  border-bottom: 1px solid var(--ts-border);
+  flex-shrink: 0;
+}
+
+.jacket-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ts-text-title);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 40px);
+}
+
+.jacket-close {
+  background: none;
+  border: none;
+  color: var(--ts-text-mute);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.15s, background 0.15s;
+}
+.jacket-close:hover {
+  color: var(--ts-text-title);
+  background: var(--ts-border);
+}
+
+.jacket-body {
+  overflow-y: auto;
+  overflow-x: auto;
+  flex: 1;
+  padding: 0;
+}
+
+.jacket-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 60px 20px;
+  color: var(--ts-text-mute);
+  font-size: 13px;
+}
+
+.jacket-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--ts-spinner-bg);
+  border-top-color: #6366f1;
+  border-radius: 50%;
+  animation: jacket-spin 0.8s linear infinite;
+}
+
+@keyframes jacket-spin {
+  to { transform: rotate(360deg); }
+}
+
+.jacket-error {
+  padding: 30px 24px;
+  color: #f87171;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.jacket-empty {
+  padding: 50px 24px;
+  text-align: center;
+  color: var(--ts-text-dim);
+  font-size: 13px;
+}
+
+.jacket-footer {
+  padding: 8px 18px;
+  font-size: 11px;
+  color: var(--ts-text-dim);
+  border-top: 1px solid var(--ts-border);
+  flex-shrink: 0;
+  background: var(--ts-bg-sub);
+}
+
+.jacket-table-wrapper {
+  overflow-x: auto;
+  min-width: 100%;
+}
+
+.jacket-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12.5px;
+  min-width: 700px;
+}
+
+.jacket-th {
+  position: sticky;
+  top: 0;
+  background: var(--ts-bg-th);
+  padding: 9px 12px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ts-text-mute);
+  border-bottom: 1px solid var(--ts-border);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: color 0.15s, background 0.15s;
+}
+.jacket-th:hover {
+  color: var(--ts-accent-hov);
+  background: var(--ts-bg-th-hov);
+}
+.jacket-th-active {
+  color: var(--ts-accent) !important;
+}
+.jacket-sort-arrow {
+  opacity: 0.5;
+  font-size: 10px;
+}
+
+.jacket-th-nosort {
+  cursor: default !important;
+}
+.jacket-th-nosort:hover {
+  color: var(--ts-text-mute) !important;
+  background: var(--ts-bg-th) !important;
+}
+
+.jacket-tr {
+  border-bottom: 1px solid var(--ts-border-row);
+  transition: background 0.1s;
+}
+.jacket-tr:hover {
+  background: var(--ts-bg-tr-hov);
+}
+.jacket-tr:last-child {
+  border-bottom: none;
+}
+
+.jacket-td {
+  padding: 8px 12px;
+  vertical-align: middle;
+  color: var(--ts-text-td);
+  max-width: 380px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.jacket-link {
+  color: var(--ts-accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+.jacket-link:hover {
+  color: var(--ts-accent-hov);
+  text-decoration: underline;
+}
+
+.jacket-magnet {
+  text-decoration: none;
+  font-size: 13px;
+  margin-left: 4px;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+  cursor: pointer;
+}
+.jacket-magnet:hover {
+  opacity: 1;
+}
+
+.jacket-td-links {
+  white-space: nowrap;
+  text-align: center;
+}
+
+.jacket-icon-link {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 15px;
+  margin: 0 3px;
+  opacity: 0.65;
+  transition: opacity 0.15s, transform 0.1s;
+  line-height: 1;
+  cursor: pointer;
+}
+.jacket-icon-link:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+.jacket-icon-magnet {
+  font-size: 14px;
+}
+
+.jacket-body::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.jacket-body::-webkit-scrollbar-track {
+  background: var(--ts-scroll-tr);
+}
+.jacket-body::-webkit-scrollbar-thumb {
+  background: var(--ts-scroll-th);
+  border-radius: 3px;
+}
+.jacket-body::-webkit-scrollbar-thumb:hover {
+  background: var(--ts-scroll-hov);
+}

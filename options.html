@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Torrent Search Settings</title>
+<style>
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 13px;
+    margin: 0;
+    padding: 16px 20px;
+    color: #222;
+    background: transparent;
+    max-width: 480px;
+  }
+  label {
+    display: block;
+    margin-bottom: 3px;
+    font-weight: 600;
+    font-size: 12px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 7px 9px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: inherit;
+    background: #fff;
+    color: #111;
+    outline: none;
+    box-sizing: border-box;
+  }
+  input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99,102,241,0.15);
+  }
+  .field { margin-bottom: 14px; }
+  .row {
+    display: flex;
+	justify-content: center;  
+    gap: 8px;
+    align-items: center;
+    margin-top: 4px;
+  }
+  button {
+    padding: 7px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, opacity 0.15s;
+  }
+  button:disabled { opacity: 0.6; cursor: default; }
+  #saveBtn { background: #6366f1; color: #fff; }
+  #saveBtn:not(:disabled):hover { background: #4f46e5; }
+  #status {
+    font-size: 12px;
+    padding: 4px 0;
+    min-height: 18px;
+    font-weight: 500;
+  }
+  .ok   { color: #16a34a; }
+  .err  { color: #dc2626; }
+  .info { color: #6366f1; }
+  hr {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 4px 0 14px;
+  }
+</style>
+</head>
+<body>
+<div class="field">
+  <label for="hostInput">URL</label>
+  <input type="text" id="hostInput" placeholder="http://127.0.0.1:9117" autocomplete="off" spellcheck="false" />
+</div>
+<div class="field">
+  <label for="apiKeyInput">API Key</label>
+  <input type="password" id="apiKeyInput" autocomplete="off" />
+</div>
+<div class="row">
+  <button id="saveBtn">Save</button>
+  <span id="status"></span>
+</div>
+<script src="options.js"></script>
+</body>
+</html>
